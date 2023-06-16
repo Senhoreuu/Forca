@@ -1,0 +1,184 @@
+body {
+    background-color: #1b1717;
+    color: #eeebdd;
+}
+
+.conteudo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    user-select: none;
+}
+
+.pagina_inicial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20em;
+    height: 20em;
+    border: 1px solid #eeebdd;
+    border-radius: 8px;
+}
+
+.titulo_paginal_inicial {
+    text-align: center;
+    border-bottom: 1px solid #eeebdd;
+    width: 100%;
+}
+
+.titulo_paginal_inicial span {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.conteudo_pagina_inicial {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 70%;
+    margin-top: 90px;
+}
+
+.opçoes_do_jogo {
+    border: 1px solid #eeebdd;
+    width: 20em;
+    height: 20em;
+    border-radius: 8px;
+}
+
+.opçoes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.opçoes .border_bt {
+    border-bottom: 1px solid #eeebdd;
+    width: 100%;
+    text-align: center;
+}
+
+.opçoes span {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.conteudo_opçoes {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.tema_palavra,
+.escolher_palavra {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.escolher_palavra {
+    margin-top: 15px;
+}
+
+.btn-primary {
+    margin-top: 20px;
+    width: 40%;
+    background-color: #eeebdd;
+    padding: 10px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#password,
+#tema {
+    width: 50%;
+}
+
+#alerta,
+#conta_erros {
+    color: #ce1212;
+}
+
+.forca {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.tema_jogo {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.falhas {
+    margin-bottom: 80px;
+    font-size: 30px;
+}
+
+.armazena_palavra {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+#palavra {
+    display: flex;
+    font-size: 30px;
+    gap: 20px;
+}
+
+.correto {
+    background-color: #1b262c;
+    color: white !important;
+}
+
+.errado {
+    background-color: #ce1212;
+    color: white !important;
+}
+
+.btn,
+input[type="button"] {
+    color: #810000;
+}
+
+.testar_palavra {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.btn-palavras {
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
+}
+
+.btn-palavras:hover:not(:disabled) {
+    cursor: pointer;
+}
+
+.table {
+    border-collapse: separate;
+}
+
+.hidden {
+    display: none;
+}
+
+.frase {
+    font-size: 20px;
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Forca</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="conteudo">
+        <div class="pagina_inicial">
+            <div class="titulo_paginal_inicial">
+                <span>Jogo da Forca</span>
+            </div>
+
+            <div class="conteudo_pagina_inicial">
+                <div class="frase">
+                    <span>Descubra qual é a palavra oculta neste jogo da Forca</span>
+                </div>
+                
+                <div>
+                    <input class="btn-primary" type="button" value="Iniciar Jogo" id="abrir_opçoes">
+                </div>
+            </div>
+        </div>
+
+        <div class="opçoes_do_jogo hidden">
+            <div class="opçoes">
+                <div class="border_bt">
+                    <span>Opções do Jogo</span>
+                </div>
+                <div class="conteudo_opçoes">
+                    <div>
+                        <div class="tema_palavra">
+                            <label for="tema_da_palavra">Defina o tema</label>
+                            <input type="text" name="tema_da_palavra" id="tema">
+                        </div>
+        
+                        <div class="escolher_palavra">
+                            <label for="palavra_chave">
+                                Defina qual será a palavra
+                            </label>
+        
+                            <input type="password" name="palavra_chave" id="password">
+                        </div>
+
+                        <div>
+                            <input class="btn-primary" type="button" value="Jogar" id="btn_start">
+                        </div>
+
+                        <span id="alerta"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagina_jogo hidden">
+            <div class="tema_jogo">
+                <span class="tema_content">Tema: </span>
+            </div>
+            <div class="forca">
+                <div class="falhas">
+                    <span id="erros">Erros: </span>
+                    <span id="conta_erros"></span>
+                </div>
+
+                <div class="armazena_palavra">
+                    <div id="palavra"></div>
+                </div>
+
+                <div class="testar_palavra">
+                    <div class="table">
+                        <div id="cl-1">
+                            <button class="btn-palavras">Q</button>
+                            <button class="btn-palavras">W</button>
+                            <button class="btn-palavras">E</button>
+                            <button class="btn-palavras">R</button>
+                            <button class="btn-palavras">T</button>
+                            <button class="btn-palavras">Y</button>
+                            <button class="btn-palavras">U</button>
+                            <button class="btn-palavras">I</button>
+                            <button class="btn-palavras">O</button>
+                            <button class="btn-palavras">P</button>
+                        </div>
+                        <div id="cl-2">
+                            <button class="btn-palavras">A</button>
+                            <button class="btn-palavras">S</button>
+                            <button class="btn-palavras">D</button>
+                            <button class="btn-palavras">F</button>
+                            <button class="btn-palavras">G</button>
+                            <button class="btn-palavras">H</button>
+                            <button class="btn-palavras">J</button>
+                            <button class="btn-palavras">K</button>
+                            <button class="btn-palavras">L</button>
+                        </div>
+                        <div id="cl-3">
+                            <button class="btn-palavras">Z</button>
+                            <button class="btn-palavras">X</button>
+                            <button class="btn-palavras">C</button>
+                            <button class="btn-palavras">V</button>
+                            <button class="btn-palavras">B</button>
+                            <button class="btn-palavras">N</button>
+                            <button class="btn-palavras">M</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" type="module"></script>
+</body>
+
+</html>
