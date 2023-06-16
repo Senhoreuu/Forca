@@ -56,8 +56,13 @@ btn_start.addEventListener('click', (event) => {
 
     let conteudo = '';
 
-    palavra.split('').forEach((_, index) => {
-        conteudo += `<span data-index="${index}">_</span>`;
+    palavra.split('').forEach((letra, index) => {
+        if (letra === ' ') {
+            conteudo += `<span data-index="${index}"> </span>`;
+        }
+        else {
+            conteudo += `<span data-index="${index}">_</span>`;
+        }
     });
 
     div_palavra.innerHTML = conteudo;
@@ -90,11 +95,7 @@ btns.forEach(function (btn) {
         event.preventDefault();
         event.target.disabled = true;
 
-        let button_letra = event.target.innerHTML.toLowerCase();
-
-        if (button_letra === 'espaço') {
-            button_letra = ' ';
-        }
+        const button_letra = event.target.innerHTML.toLowerCase();
 
         let temLetra = false;
 
