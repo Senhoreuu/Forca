@@ -1,7 +1,7 @@
 const btn_abrir_opçoes = document.querySelector('#abrir_opçoes');
 const btn_start = document.querySelector('#btn_start');
 
-const btns = document.querySelectorAll('.btn-palavras');
+const btns = document.querySelectorAll('.btn');
 
 const div_pagina_inicial = document.querySelector('.pagina_inicial');
 const div_opçoes_do_jogo = document.querySelector('.opçoes_do_jogo');
