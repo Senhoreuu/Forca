@@ -150,7 +150,6 @@ body {
     color: white !important;
 }
 
-.btn,
 input[type="button"] {
     color: #810000;
 }
@@ -165,6 +164,7 @@ input[type="button"] {
     height: 40px;
     width: 40px;
     border-radius: 8px;
+    color: #810000;
 }
 
 .btn-palavras:hover:not(:disabled) {
@@ -181,4 +181,11 @@ input[type="button"] {
 
 .frase {
     font-size: 20px;
+}
+
+.btn-space {
+    height: 40px;
+    width: 60px;
+    border-radius: 8px;
+    color: #810000;
 }
