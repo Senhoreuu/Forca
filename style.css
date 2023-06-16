@@ -171,6 +171,10 @@ input[type="button"] {
     cursor: pointer;
 }
 
+.btn-space:hover:not(:disabled) {
+    cursor: pointer;
+}
+
 .table {
     border-collapse: separate;
 }
@@ -187,7 +191,6 @@ input[type="button"] {
     height: 40px;
     border-radius: 8px;
     color: #810000;
-    cursor: pointer;
 }
 
 .btn-space {
