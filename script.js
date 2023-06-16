@@ -12,7 +12,6 @@ let erros = 0;
 let acertos = 0;
 
 function removerAcentos(word) {
-    console.log(word.normalize("NFD"));
     return word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
@@ -47,9 +46,7 @@ btn_start.addEventListener('click', (event) => {
 
     tema_jogo.innerHTML = `Tema: ${tema.value}`;
 
-    password = removerAcentos(`${password.value}`) ? removerAcentos(`${password.value}`) : password;
-
-    palavra = password.value.toLowerCase();
+    palavra = removerAcentos(`${password.value}`) ? removerAcentos(`${password.value}`) : password.value;
 
     const div_palavra = document.querySelector('#palavra');
 
