@@ -46,9 +46,9 @@ btn_start.addEventListener('click', (event) => {
 
     tema_jogo.innerHTML = `Tema: ${tema.value}`;
 
-    password = removerAcentos(password).toLowerCase();
+    // password = removerAcentos(password).toLowerCase();
 
-    palavra = password.value;
+    palavra = password.value.toLowerCase();
 
     const div_palavra = document.querySelector('#palavra');
 
