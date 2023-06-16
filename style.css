@@ -183,9 +183,13 @@ input[type="button"] {
     font-size: 20px;
 }
 
-.btn-space {
+.btn {
     height: 40px;
-    width: 60px;
     border-radius: 8px;
     color: #810000;
+    cursor: pointer;
+}
+
+.btn-space {
+    width: 60px;
 }
