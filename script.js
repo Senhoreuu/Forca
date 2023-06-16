@@ -11,6 +11,10 @@ let palavra = '';
 let erros = 0;
 let acertos = 0;
 
+function removerAcentos(palavra) {
+    return palavra.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 btn_abrir_opçoes.addEventListener('click', (event) => {
     event.preventDefault();
 
@@ -29,7 +33,7 @@ btn_start.addEventListener('click', (event) => {
         return alerta.textContent = 'Insira um tema!';
     }
 
-    const password = document.querySelector('#password');
+    let password = document.querySelector('#password');
 
     if (password.value === "") {
         return alerta.textContent = 'Insira uma palavra!';
@@ -42,7 +46,9 @@ btn_start.addEventListener('click', (event) => {
 
     tema_jogo.innerHTML = `Tema: ${tema.value}`;
 
-    palavra = password.value.toLowerCase();
+    password = removerAcentos(password).toLowerCase();
+
+    palavra = password.value;
 
     const div_palavra = document.querySelector('#palavra');
 
