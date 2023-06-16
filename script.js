@@ -60,6 +60,7 @@ btn_start.addEventListener('click', (event) => {
     palavra.split('').forEach((letra, index) => {
         if (letra === ' ') {
             conteudo += `<span data-index="${index}"> </span>`;
+            acertos++;
         }
         else {
             conteudo += `<span data-index="${index}">_</span>`;
