@@ -84,7 +84,11 @@ btns.forEach(function (btn) {
         event.preventDefault();
         event.target.disabled = true;
 
-        const button_letra = event.target.innerHTML.toLowerCase();
+        let button_letra = event.target.innerHTML.toLowerCase();
+
+        if (button_letra === 'espaço') {
+            button_letra = ' ';
+        }
 
         let temLetra = false;
 
