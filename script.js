@@ -61,6 +61,8 @@ $('#btn_start').click((event) => {
         return span_alert.text('Insira uma palavra!');
     }
 
+    span_alert.empty();
+
     game.word = String(removeAccents(`${password.val()}`))?.toLowerCase();
 
     console.log(game.word);
