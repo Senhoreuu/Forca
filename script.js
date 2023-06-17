@@ -1,132 +1,149 @@
-const btn_abrir_opçoes = document.querySelector('#abrir_opçoes');
-const btn_start = document.querySelector('#btn_start');
+const game = {
+    word: '',
+    errorCount: 0,
+    corrects: 0
+};
 
-const btns = document.querySelectorAll('.btn');
-
-const div_pagina_inicial = document.querySelector('.pagina_inicial');
-const div_opçoes_do_jogo = document.querySelector('.opçoes_do_jogo');
-const div_pagina_jogo = document.querySelector('.pagina_jogo');
-
-let palavra = '';
-let erros = 0;
-let acertos = 0;
-
-function removerAcentos(word) {
-    return word.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+function removeAccents(word) {
+    return word.normalize('NFD')?.replace(/[\u0300-\u036f]/g, '');
 }
 
-btn_abrir_opçoes.addEventListener('click', (event) => {
-    event.preventDefault();
+function updateErrors() {
+    const conta_erros = $('#conta_erros');
+    conta_erros.text(game.errorCount);
+}
 
-    div_opçoes_do_jogo.classList.remove('hidden');
-    div_pagina_inicial.classList.add('hidden');
-});
-
-btn_start.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    const tema = document.querySelector('#tema');
-
-    const alerta = document.querySelector('#alerta');
-
-    if (tema.value === "") {
-        return alerta.textContent = 'Insira um tema!';
-    }
-
-    let password = document.querySelector('#password');
-
-    if (password.value === "") {
-        return alerta.textContent = 'Insira uma palavra!';
-    }
-
-    div_opçoes_do_jogo.classList.add('hidden');
-    div_pagina_jogo.classList.remove('hidden');
-
-    const tema_jogo = document.querySelector('.tema_content');
-
-    tema_jogo.innerHTML = `Tema: ${tema.value}`;
-
-    palavra = removerAcentos(`${password.value}`) ? removerAcentos(`${password.value}`) : password.value;
-
-    palavra = palavra.toLowerCase();
-
-    const div_palavra = document.querySelector('#palavra');
-
-    div_palavra.innerHTML = '';
-
-    let conteudo = '';
-
-    palavra.split('').forEach((letra, index) => {
-        if (letra === ' ') {
-            conteudo += `<span data-index="${index}"> </span>`;
-            acertos++;
-        }
-        else {
-            conteudo += `<span data-index="${index}">_</span>`;
-        }
-    });
-
-    div_palavra.innerHTML = conteudo;
-
-    tema.value = '';
-    password.value = '';
-
-    const conta_erros = document.querySelector('#conta_erros');
-    conta_erros.innerHTML = 0;
-});
-
-function reset() {
-    palavra = '';
-    erros = 0;
-    acertos = 0;
-
-    div_opçoes_do_jogo.classList.remove('hidden');
-    div_pagina_jogo.classList.add('hidden');
-
-    btns.forEach(function (btn) {
+function clearButtons() {
+    $('.btn').each((_, btn) => {
         btn.classList.remove('correto');
         btn.classList.remove('errado');
 
         btn.disabled = false;
     });
+}
+
+function updateLetter(letter_btn) {
+    let hasLetter = false;
+
+    game.word.split('').forEach((letter, index) => {
+        if (letter === letter_btn) {
+            const span = $(`span[data-index="${index}"]`);
+            span.text(letter.toUpperCase());
+            hasLetter = true;
+            game.corrects++;
+        }
+    });
+
+    return hasLetter;
+}
+
+$('#abrir_opçoes').click((event) => {
+    event.preventDefault();
+
+    $('.opçoes_do_jogo').removeClass('hidden');
+    $('.pagina_inicial').addClass('hidden');
+});
+
+$('#btn_start').click((event) => {
+    event.preventDefault();
+
+    const theme = $('#tema');
+
+    const span_alert = $('#alerta');
+
+    if (theme.val() === "") {
+        return span_alert.text('Insira um tema!');
+    }
+
+    let password = $('#password');
+
+    if (password.val() === "") {
+        return span_alert.text('Insira uma palavra!');
+    }
+
+    game.word = String(removeAccents(`${password.val()}`))?.toLowerCase();
+
+    console.log(game.word);
+
+    if (!game.word) {
+        return alert.text('A palavra escolhida não pode usada! Apenas textos são permitidos.');
+    }
+
+    $('.opçoes_do_jogo').addClass('hidden');
+    $('.pagina_jogo').removeClass('hidden');
+
+    $('.tema_content').text(`Tema: ${theme.val()}`);
+
+    const div_word = $('#palavra');
+
+    div_word.empty();
+
+    let content = '';
+
+    game.word.split('').forEach((letter, index) => {
+        switch (letter) {
+            case ' ':
+                content += `<span> </span>`;
+                game.corrects++;
+                break;
+            case '-':
+                content += `<span>-</span>`;
+                game.corrects++;
+                break;
+            default:
+                content += `<span data-index="${index}">_</span>`;
+                break;
+        }
+    });
+
+    div_word.html(content);
+
+    theme.val('');
+    password.val('');
+
+    const conta_erros = $('#conta_erros');
+    conta_erros.text(game.errorCount);
+});
+
+function reset() {
+    game.word = '';
+    game.errorCount = 0;
+    game.corrects = 0;
+
+    $('.opçoes_do_jogo').removeClass('hidden');
+    $('.pagina_jogo').addClass('hidden');
+
+    clearButtons();
+    updateErrors();
 };
 
-btns.forEach(function (btn) {
+$('.btn').each((_, btn) => {
     btn.addEventListener('click', (event) => {
         event.preventDefault();
-        event.target.disabled = true;
 
-        const button_letra = event.target.innerHTML.toLowerCase();
+        btn.disabled = true;
 
-        let temLetra = false;
+        const letter_btn = btn.textContent.toLowerCase();
 
-        palavra.split('').forEach((letra, index) => {
-            if (letra === button_letra) {
-                const span = document.querySelector(`span[data-index="${index}"]`);
-                span.innerHTML = letra.toUpperCase();
-                temLetra = true;
-                acertos++;
-            }
-        });
+        const hasLetter = updateLetter(letter_btn);
 
-        if (temLetra) {
-            event.target.classList.add('correto');
+        if (hasLetter) {
+            btn.classList.add('correto');
         }
         else {
-            event.target.classList.add('errado');
-            erros++;
-            if (erros === 6) {
-                alert(`Você perdeu! A palavra era ${palavra}`);
+            btn.classList.add('errado');
+            game.errorCount++;
+            if (game.errorCount === 6) {
+                alert(`Você perdeu! A palavra era ${game.word}`);
                 reset();
             }
         }
 
-        if (acertos === palavra.length) {
-            alert(`Você acertou a palavra! A palavra era ${palavra}`);
+        if (game.corrects === game.word.length) {
+            alert(`Você acertou a palavra! A palavra era ${game.word}`);
             reset();
         }
 
-        const conta_erros = document.querySelector('#conta_erros');
-        conta_erros.innerHTML = erros;
+        updateErrors();
     });
-})
+});
