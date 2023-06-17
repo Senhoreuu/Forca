@@ -22,7 +22,7 @@
                 <div class="frase">
                     <span>Descubra qual é a palavra oculta neste jogo da Forca</span>
                 </div>
-                
+
                 <div>
                     <input class="btn-primary" type="button" value="Iniciar Jogo" id="abrir_opçoes">
                 </div>
@@ -40,12 +40,12 @@
                             <label for="tema_da_palavra">Defina o tema</label>
                             <input type="text" name="tema_da_palavra" id="tema">
                         </div>
-        
+
                         <div class="escolher_palavra">
                             <label for="palavra_chave">
                                 Defina qual será a palavra
                             </label>
-        
+
                             <input type="password" name="palavra_chave" id="password">
                         </div>
 
@@ -113,17 +113,24 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="message hidden">
-            <div class="body-title-message">
-                <span class="title-message"></span>
-            </div>
+    <div class="message hidden" id="draggable">
+        <div class="body-title-message">
+            <span class="title-message"></span>
+        </div>
 
-            <div class="message-content"></div>
+        <div class="message-content">
+            <p class="phrase"></p>
+        </div>
+
+        <div>
+            <input type="button" value="OK" id="btn-confirm">
         </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <script src="script.js" type="module"></script>
 </body>
