@@ -1,4 +1,5 @@
 const game = {
+    start: false,
     word: '',
     errorCount: 0,
     corrects: 0
@@ -11,6 +12,10 @@ function removeAccents(word) {
 function updateErrors() {
     const conta_erros = $('#conta_erros');
     conta_erros.text(game.errorCount);
+
+    if (game.errorCount === 6) {
+        loser();
+    }
 }
 
 function clearButtons() {
@@ -37,14 +42,14 @@ function updateLetter(letter_btn) {
     return hasLetter;
 }
 
-$('#abrir_opçoes').click((event) => {
+function openOptions(event) {
     event.preventDefault();
 
     $('.opçoes_do_jogo').removeClass('hidden');
     $('.pagina_inicial').addClass('hidden');
-});
+}
 
-$('#btn_start').click((event) => {
+function start(event) {
     event.preventDefault();
 
     const theme = $('#tema');
@@ -64,8 +69,6 @@ $('#btn_start').click((event) => {
     span_alert.empty();
 
     game.word = String(removeAccents(`${password.val()}`))?.toLowerCase();
-
-    console.log(game.word);
 
     if (!game.word) {
         return alert.text('A palavra escolhida não pode usada! Apenas textos são permitidos.');
@@ -103,49 +106,96 @@ $('#btn_start').click((event) => {
     theme.val('');
     password.val('');
 
+    game.start = true;
+
     const conta_erros = $('#conta_erros');
     conta_erros.text(game.errorCount);
+}
+
+$('#btn-confirm').click((event) => {
+    event.preventDefault();
+
+    reset();
 });
 
+function resetPosition() {
+    $('.message').css('left', '849px');
+    $('.message').css('top', '-668px');
+}
+
+function win() {
+    resetPosition();
+    game.start = false;
+    $('.message').removeClass('hidden');
+    $('.title-message').text('Você venceu!');
+    $('.phrase').text(`Parabéns, você descobriu a palavra!
+    A palavra certa era ${game.word}.`);
+}
+
+function loser() {
+    resetPosition();
+    game.start = false;
+    $('.message').removeClass('hidden');
+    $('.title-message').text('Você perdeu!');
+    $('.phrase').text(`Infelizmente, você não descobriu a palavra!
+    A palavra certa era ${game.word}.`);
+}
+
+function checkWord(event) {
+    event.preventDefault();
+
+    if (!game.start) return;
+
+    const btn = event.target;
+
+    btn.disabled = true;
+
+    const letter_btn = btn.textContent.toLowerCase();
+
+    const hasLetter = updateLetter(letter_btn);
+
+    if (hasLetter) {
+        btn.classList.add('correto');
+    }
+    else {
+        game.errorCount++;
+        btn.classList.add('errado');
+    }
+
+    if (game.corrects === game.word.length) {
+        win();
+    }
+
+    updateErrors();
+}
+
 function reset() {
+    game.start = false;
     game.word = '';
     game.errorCount = 0;
     game.corrects = 0;
 
     $('.opçoes_do_jogo').removeClass('hidden');
     $('.pagina_jogo').addClass('hidden');
+    $('.pagina_inicial').addClass('hidden');
+    $('.message').addClass('hidden');
 
     clearButtons();
     updateErrors();
 };
 
-$('.btn').each((_, btn) => {
-    btn.addEventListener('click', (event) => {
-        event.preventDefault();
+$('#abrir_opçoes').click(openOptions);
 
-        btn.disabled = true;
+$('#btn_start').click(start);
 
-        const letter_btn = btn.textContent.toLowerCase();
+$('.btn').each((_, btn) => btn.addEventListener('click', checkWord));
 
-        const hasLetter = updateLetter(letter_btn);
-
-        if (hasLetter) {
-            btn.classList.add('correto');
-        }
-        else {
-            btn.classList.add('errado');
-            game.errorCount++;
-            if (game.errorCount === 6) {
-                alert(`Você perdeu! A palavra era ${game.word}`);
-                reset();
-            }
-        }
-
-        if (game.corrects === game.word.length) {
-            alert(`Você acertou a palavra! A palavra era ${game.word}`);
-            reset();
-        }
-
-        updateErrors();
-    });
+$('.opçoes').keypress((event) => {
+    if (event.keyCode === 13 || event.key === 'Enter') {
+        start(event);
+    }
 });
+
+(() => {
+    $('#draggable').draggable();
+})();
