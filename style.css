@@ -189,3 +189,9 @@ input[type="button"] {
     border-radius: 8px;
     color: #810000;
 }
+
+.alert {
+    box-sizing: border-box;
+    height: 1%;
+    margin-top: 15px;
+}
