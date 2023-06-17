@@ -1,6 +1,11 @@
 body {
-    background-color: #1b1717;
+    background-color: rgb(20, 20, 20);
     color: #eeebdd;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+    user-select: none;
+    overflow: hidden;
 }
 
 .conteudo {
@@ -9,7 +14,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    user-select: none;
 }
 
 .pagina_inicial {
@@ -101,7 +105,17 @@ body {
 
 #password,
 #tema {
+    border: none;
+    outline: none;
     width: 50%;
+    height: 20px;
+    border-radius: 8px;
+    color: #1b1717;
+    background-color: #eeebdd;
+}
+
+#tema {
+    text-transform: capitalize;
 }
 
 #alerta,
@@ -150,8 +164,12 @@ body {
     color: white !important;
 }
 
-input[type="button"] {
+input[type="button"],
+button {
+    border: none;
     color: #810000;
+    border-radius: 8px;
+    outline: none;
 }
 
 .testar_palavra {
@@ -164,8 +182,13 @@ input[type="button"] {
 .btn-palavras {
     height: 40px;
     width: 40px;
-    border-radius: 8px;
-    color: #810000;
+    z-index: 3;
+}
+
+#btn-confirm {
+    height: 40px;
+    width: 80px;
+    cursor: pointer;
 }
 
 .btn-palavras:hover:not(:disabled) {
@@ -177,10 +200,11 @@ input[type="button"] {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
-.frase {
+.frase,
+.phrase {
     font-size: 20px;
 }
 
@@ -194,4 +218,31 @@ input[type="button"] {
     box-sizing: border-box;
     height: 1%;
     margin-top: 15px;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eeebdd;
+    border-radius: 8px;
+    align-items: center;
+    width: 20em;
+    height: 11em;
+    z-index: 2;
+    background-color: black;
+}
+
+.body-title-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #eeebdd;
+    width: 100%;
+    height: 40px;
+    font-size: 25px;
+}
+
+.message-content {
+    text-align: center;
+    width: 100%;
 }
