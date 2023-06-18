@@ -86,7 +86,7 @@ function start(event) {
     let content = '';
 
     game.word.split('').forEach((letter, index) => {
-        if (/^[a-zA-Z]+$/.test(letter)) {
+        if (/^[a-zA-Z]+$/.test(letter) && isNaN(letter)) {
             content += `<span data-index="${index}">_</span>`;
         }
         else {
