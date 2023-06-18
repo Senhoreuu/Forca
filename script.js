@@ -86,18 +86,12 @@ function start(event) {
     let content = '';
 
     game.word.split('').forEach((letter, index) => {
-        switch (letter) {
-            case ' ':
-                content += `<span> </span>`;
-                game.corrects++;
-                break;
-            case '-':
-                content += `<span>-</span>`;
-                game.corrects++;
-                break;
-            default:
-                content += `<span data-index="${index}">_</span>`;
-                break;
+        if (/^[a-zA-Z]+$/.test(letter)) {
+            content += `<span data-index="${index}">_</span>`;
+        }
+        else {
+            content += `<span>${letter}</span>`;
+            game.corrects++;
         }
     });
 
